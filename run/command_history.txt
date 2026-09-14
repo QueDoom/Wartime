@@ -1,0 +1,5 @@
+/enchant @s minecraft:wind_burst 1
+/give @s wartime:super_mace[minecraft:enchantments=}]
+/enchant @s minecraft:wind_burst 1
+/enchant @s minecraft:wind_burst 3
+/initwar
