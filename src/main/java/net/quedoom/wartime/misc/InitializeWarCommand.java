@@ -16,6 +16,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.OutgoingChatMessage;
 import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.GameRules;
+import net.quedoom.wartime.SavedData;
+import net.quedoom.wartime.Wartime;
 import net.quedoom.wartime.init.ModItems;
 
 import java.util.Collection;
@@ -32,6 +35,13 @@ public class InitializeWarCommand {
     }
 
     private static int giveItem(CommandSourceStack source) {
+        boolean isWar = source.getLevel().getGameRules().getRule(SavedData.RULES_ISWAR).get();
+        Wartime.LOGGER.info(String.valueOf(isWar));
+        if (isWar) {
+            source.getPlayer().sendSystemMessage(Component.literal("War started already!"));
+            return 67;
+        };
+        source.getLevel().getGameRules().getRule(SavedData.RULES_ISWAR).set(true, source.getServer());
         List<ServerPlayer> players = source.getLevel().players();
         int amountOfPlayers = players.size();
         int playerToGetMace = (int) (Math.random() * (amountOfPlayers + 1));

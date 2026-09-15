@@ -1,14 +1,15 @@
 package net.quedoom.wartime;
 
+import net.minecraft.world.level.GameRules;
+
 public class SavedData {
 
-    private static boolean isWar;
+    public static final GameRules.Key<GameRules.BooleanValue> RULES_ISWAR = GameRules.register(
+            "isWar", GameRules.Category.MISC, GameRules.BooleanValue.create(false)
+    );
 
-    public static <T> void save(String type, T value) {
-        switch (type) {
-            case "isWar" -> isWar = (boolean) value;
-            default -> {}
-        }
+    public static void register() {
+
     }
 
 }

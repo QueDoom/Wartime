@@ -13,3 +13,9 @@
 /effect clear
 /effect give @s minecraft:haste infinite 1 true
 /effect clear
+/enchant @s minecraft:efficiency 5
+/effect give @s minecraft:haste infinite 1
+/effect give @s minecraft:haste infinite 1 true
+/initwar
+/gamerule isWar
+/initwar

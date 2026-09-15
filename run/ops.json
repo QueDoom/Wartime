@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "uuid": "2f4d8169-7b5c-3fe0-93f5-b5e1a0de31a9",
+    "name": "qeudoom",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]

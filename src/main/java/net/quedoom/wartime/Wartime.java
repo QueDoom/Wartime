@@ -43,7 +43,7 @@ import org.slf4j.Logger;
 @Mod(Wartime.MOD_ID)
 public class Wartime {
     public static final String MOD_ID = "wartime";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
@@ -57,6 +57,7 @@ public class Wartime {
 
         ModItems.register(modEventBus);
         ModTags.register();
+        SavedData.register();
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (Wartime) to respond directly to events.
