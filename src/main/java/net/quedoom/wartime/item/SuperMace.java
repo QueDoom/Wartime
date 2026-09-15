@@ -1,6 +1,9 @@
 package net.quedoom.wartime.item;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -8,15 +11,42 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.MaceItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
+import net.quedoom.wartime.init.ModTags;
+import net.quedoom.wartime.misc.MaceUtils;
+
+import java.util.List;
 
 public class SuperMace extends MaceItem {
     public SuperMace(Properties properties) {
-        super(properties);
+        super(
+                properties.component(
+                        DataComponents.TOOL,
+                        MaceUtils.createToolProperties()
+                )
+        );
+    }
+
+    private Tool createToolPropertiees(TagKey<Block> tagKey) {
+        return new Tool(
+                                List.of(
+                                Tool.Rule.deniesDrops(BlockTags.INCORRECT_FOR_NETHERITE_TOOL),
+                                Tool.Rule.minesAndDrops(tagKey, 11.5F)
+                        ),
+                                1.0F, 0);
+    }
+
+
+    @Override
+    public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+        return ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(itemAbility);
     }
 
     public static ItemAttributeModifiers createAttributes() {

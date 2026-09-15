@@ -4,9 +4,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.MaceItem;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.neoforged.bus.api.IEventBus;
@@ -23,9 +21,8 @@ public class ModItems {
     public static final DeferredItem<Item> SUPER_MEGA_RAPER_MACE = ITEMS.register("super_mace",
             () -> new SuperMace(new Item.Properties()
                     .rarity(Rarity.EPIC)
-                    .durability(500)
-                    .component(DataComponents.TOOL, new Tool(List.of(), 1.0F, 3))
-                    .attributes(SuperMace.createAttributes())));
+                    .fireResistant()
+                    .attributes(PickaxeItem.createAttributes(Tiers.NETHERITE, 100.0F, -1.4F))));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

@@ -3,3 +3,13 @@
 /enchant @s minecraft:wind_burst 1
 /enchant @s minecraft:wind_burst 3
 /initwar
+/fill -13 -61 -1
+/fill -13 -61 -1 -5 -45 -8
+/fill -13 -61 -1 -5 -45 -8 stone'
+/fill -13 -61 -1 -5 -45 -8 stone
+/give @p stick[unbreakable={},tool={default_mining_speed:100,damage_per_block:5,rules:[{speed:100,correct_for_drops:true},{speed:100,correct_for_drops:true},{speed:100,correct_for_drops:true},{speed:100,correct_for_drops:true}]}] 1
+/enchant @s minecraft:efficiency 5
+/effect give @s minecraft:haste infinite 2 true
+/effect clear
+/effect give @s minecraft:haste infinite 1 true
+/effect clear

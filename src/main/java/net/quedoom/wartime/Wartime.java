@@ -6,6 +6,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -33,6 +34,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.quedoom.wartime.init.ModItems;
+import net.quedoom.wartime.init.ModTags;
 import net.quedoom.wartime.misc.InitializeWarCommand;
 import org.slf4j.Logger;
 
@@ -42,7 +44,9 @@ import org.slf4j.Logger;
 public class Wartime {
     public static final String MOD_ID = "wartime";
     private static final Logger LOGGER = LogUtils.getLogger();
-
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    }
 
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -52,6 +56,7 @@ public class Wartime {
         modEventBus.addListener(this::commonSetup);
 
         ModItems.register(modEventBus);
+        ModTags.register();
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (Wartime) to respond directly to events.
