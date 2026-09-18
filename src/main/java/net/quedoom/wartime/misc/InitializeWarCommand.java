@@ -36,22 +36,13 @@ public class InitializeWarCommand {
 
     private static int giveItem(CommandSourceStack source) {
         boolean isWar = source.getLevel().getGameRules().getRule(SavedData.RULES_ISWAR).get();
-        Wartime.LOGGER.info(String.valueOf(isWar));
         if (isWar) {
             source.getPlayer().sendSystemMessage(Component.literal("War started already!"));
             return 67;
         };
         source.getLevel().getGameRules().getRule(SavedData.RULES_ISWAR).set(true, source.getServer());
-        List<ServerPlayer> players = source.getLevel().players();
-        int amountOfPlayers = players.size();
-        int playerToGetMace = (int) (Math.random() * (amountOfPlayers + 1));
-        int playerToGetMotor = (int) (Math.random() * (amountOfPlayers + 1));
-        players.get(playerToGetMace).addItem(ModItems.SUPER_MEGA_RAPER_MACE.toStack());
-        players.get(playerToGetMotor).addItem(AllBlocks.CREATIVE_MOTOR.asStack());
-        for (ServerPlayer player : players) {
-            player.sendSystemMessage(Component.literal(players.get(playerToGetMace).getName().getString() + " har Macen"));
-            player.sendSystemMessage(Component.literal(players.get(playerToGetMotor).getName().getString() + " har Motorn"));
-        }
+        source.getPlayer().addItem(ModItems.SUPER_MEGA_RAPER_MACE.toStack());
+        source.getPlayer().addItem(AllBlocks.CREATIVE_FLUID_TANK.asStack());
         return 1;
     }
 }
